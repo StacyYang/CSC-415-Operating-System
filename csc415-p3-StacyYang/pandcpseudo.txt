@@ -1,0 +1,83 @@
+pseudo goes here
+
+initialize buffer as pointer for the first address of the array // int* buffer;
+initialize check as pointer for the first address of the producerArray // int* producerArray;
+initialize check as pointer for the first address of the consumerArray // int* consumerArray;
+
+main {
+    take input from user, and initialize all variables based on user input.
+    allocate memory for buffer and two arrays.
+    initialize semaphore full and empty.
+    initialize mutex. 
+ 
+    time tracking start:
+	create producer threads.
+	create consumer threads. 
+        join producer threads.
+	join consumer threads.
+    time tracking stop.
+
+    check_match().
+
+    clean up memory and thread.
+}
+
+timestamp{
+    printout current time.
+}
+
+put_item{
+    enqueue an item into buffer.
+    adjust index.
+    enqueue the item into producerArray.
+}
+
+producer{
+    while i less than produceItemNum{
+	sem_wait(empty)
+	pthread_mutex_lock
+        call put_item()
+        pthread_mutex_lock
+        sam_post(full)
+        sleep.
+    }
+    pthread_exit
+}
+
+grab_item{
+    dequeue an item from buffer.
+    adjust index.
+    enqueue the item into consumerArray.
+    return consumedItem.
+}
+
+consumer{
+    while i less than consumeItemNum{
+	sem_wait(full)
+ 	pthread_mutex_lock
+        call grab_item()
+        pthread_mutex_lock
+        sam_post(empty)
+        sleep.
+    }
+    pthread_exit
+}
+
+consumer1{
+    while i less than overConsumeAmount{
+	sem_wait(full)
+ 	pthread_mutex_lock
+        call grab_item()
+        pthread_mutex_lock
+        sam_post(empty)
+        sleep.
+    }
+    pthread_exit
+}
+
+check_match{
+    print all elements in producerArray and consumerArray.
+    compare these elements one by one.
+}
+
+
