@@ -1,4 +1,6 @@
 # CSC-415-Operating-System
+These are my homework from San Francisco State University. 
+
 p1: hello world
 
 p2 : myshell (customized shell)
